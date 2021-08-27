@@ -1,0 +1,17 @@
+sqlcipher 版本 3.4.1
+
+其中
+crypto.c、crypto_impl.c、crypto_openssl.c、sqlcipher.h、crypto.h
+为sqlcipher文件
+
+
+仅仅修改了crypto.c、crypto_impl.c、crypto_openssl.c文件开始包含文件处改为#include <sqlite3.h>
+sqlcipher分离了很多sqlite3.c没有写入sqlite3.h的结构声明
+
+
+sqlcipher_help.c为了方便sqlcipher使用那些声明在sqlite3.c里面的结构，直接#include了sqlite3.c
+
+
+要使用sqlcipher功能，直接把sqlcipher_help.c加入工程，并声明SQLITE_HAS_CODEC宏，让sqlite3启用加密接口
+
+
